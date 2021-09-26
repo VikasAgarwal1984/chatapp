@@ -1,0 +1,24 @@
+<div>
+  <div>
+    <label>Server</label>
+    <input type="text" [(ngModel)]="serverName" />
+  </div>
+  <div>
+    <label>Number of Connections</label>
+    <input type="text" [(ngModel)]="numberOfConnections" />
+  </div>
+  <div>
+    <button (click)="addNewConnections()">Add Connections</button>
+    <button (click)="connectAll()">Connect All</button>
+    <button (click)="disconnectAll()">Disconnect All</button>
+  </div>
+
+  <div class="connections">
+    <div *ngFor="let con of connections" class='container'>
+      <app-sock-info (clearMessagesEvent)="clearMessages(con.sockInfo)" 
+      (messageSocket)="messageSocket(con.sockInfo, $event)" (connectSocket)='connectSocket($event)' (disconnectSocket)='disconnectSocket($event)' [sockInfo]="con.sockInfo"></app-sock-info>
+    </div>
+  </div>
+</div>
+
+<ng-template> </ng-template>

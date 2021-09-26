@@ -1,0 +1,27 @@
+<div>
+    <div>
+        <label>{{sockInfo.name}}</label><br>
+        <label>{{sockInfo.isConnected ? 'Connected': 'Not Connected'}}</label>
+        <button *ngIf="!sockInfo.isConnected" (click)='connect()'>Connect</button>
+        <button *ngIf="sockInfo.isConnected" (click)='disconnect()'>Disconnect</button>
+        <div *ngIf="sockInfo.isConnected">
+            <label>User: </label>
+            <input type="text" [(ngModel)]="user">
+            <label>Message: </label>
+            <input type="text" [(ngModel)]="message">
+            <button (click)='sendMessage()'>Send</button>
+        </div>
+    </div>
+
+    <div>
+        <br>
+        <label><b>Messages</b></label> <a (click)='clearMessages()'>Clear</a>
+        <div class='messages'>
+            <ul>
+                <li *ngFor='let message of sockInfo.messages'>
+                    {{message}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
